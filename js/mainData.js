@@ -1,4 +1,9 @@
 const mainData = () => {
+  const renderAnimeList = (array, ganres) => {
+    console.log(array);
+    console.log(ganres);
+  };
+
   const renderTopAnime = (array) => {
     const wrapper = document.querySelector('.filter__gallery');
 
@@ -14,10 +19,10 @@ const mainData = () => {
         </div>`
       );
     });
-    wrapper.querySelectorAll('.set-bg').forEach((elem) => {
-      elem.style.backgroundImage = `url(${elem.dataset.setbg})`;
-    });
-    console.log(wrapper);
+    //wrapper.querySelectorAll('.set-bg').forEach((elem) => {
+    //  elem.style.backgroundImage = `url(${elem.dataset.setbg})`;
+    //});
+    //console.log(wrapper);
   };
 
   fetch('./db.json')
@@ -25,14 +30,14 @@ const mainData = () => {
       return respone.json();
     })
     .then((data) => {
-      // const ganres = new Set();
+      const ganres = new Set();
 
       renderTopAnime(data.anime.sort((a, b) => b.views - a.views).slice(0, 5));
 
-      //data.anime.forEach((irem) => {
-      // ganres.add(item.ganer);
-      //});
-      // console.log(ganers);
+      data.anime.forEach((item) => {
+        ganres.add(item.ganre);
+      });
+      renderAnimeList(data.anime, ganres);
     });
 };
 mainData();
