@@ -14,9 +14,10 @@ const mainData = () => {
         </div>`
       );
     });
-    //wrapper.querySelectorAll('.set-bg').forEach((elem) => {
-    // elem.style.backgroundImage = `url(${elem.dataset.setbg})`;
-    //});
+    wrapper.querySelectorAll('.set-bg').forEach((elem) => {
+      elem.style.backgroundImage = `url(${elem.dataset.setbg})`;
+    });
+    console.log(wrapper);
   };
 
   fetch('./db.json')
